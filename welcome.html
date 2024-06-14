@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
+      cursor: none;
+      overflow: hidden;
+    }
+
+    body:hover .cursor {
+      opacity: 1;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .container .item:hover span {
+      text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 30px #fff, 0 0 60px #fff, 0 0 100px #fff;
+    }
+
+    .cursor {
+      position: fixed;
+      opacity: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 30px #fff, 0 0 60px #fff;
+      transition: opacity 300ms ease;
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="item">I am Judy</div>
+    <div class="item">Welcome To CoderKing Registry</div>
+  </div>
+
+  <div class="cursor"></div>
+  
+  <script>
+
+    const containerEl = document.querySelector('.container')
+    const itemEls = document.querySelectorAll('.item')
+
+    itemEls.forEach((itemEl, index) => {
+      const text = itemEl.textContent.split('')
+
+      itemEl.innerHTML = text.map((char, i) => `<span style='transition-delay: ${i * 40}ms'>${char}</span>`).join('')
+    })
+
+    const cursorEl = document.querySelector('.cursor')
+    document.onmousemove = (e) => {
+      cursorEl.style.left = e.pageX + 'px'
+      cursorEl.style.top = e.pageY + 'px'
+    }
+
+  </script>
+</body>
+</html>
